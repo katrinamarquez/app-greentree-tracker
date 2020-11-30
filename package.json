@@ -1,0 +1,22 @@
+{
+  "name": "app-greentree-tracker",
+  "version": "1.0.0",
+  "description": "Coder Academy T3A2 (Part B)",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "expect": "^26.6.2",
+    "mocha": "^8.2.1",
+    "nodemon": "^2.0.6"
+  }
+}
