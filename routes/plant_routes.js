@@ -10,7 +10,7 @@ router.get("/", getPlants)
 // READ
 // GET on '/plants/:id'
 // Returns plant with given id
-router.get("/", getPlant)
+router.get("/:id", getPlant)
 
 // CREATE
 // POST on '/plants'
