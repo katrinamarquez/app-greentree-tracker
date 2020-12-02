@@ -13,13 +13,20 @@ const addPlant = function(req){
   return new Plant(req.body)
 }   
 
-const deletePlant = function (req) {
+const deletePlant = function (id) {
   return Plant.findByIdAndRemove(id)
 }
+
+const updatePlant = function (req) {
+  return Plant.findByIdAndUpdate(req.params.id, req.body, {
+    new: true
+  });
+};
 
 module.exports = {
   getAllPlants,
   getPlantById,
   addPlant, 
-  deletePlant
+  deletePlant,
+  updatePlant
 }

@@ -1,4 +1,4 @@
-const { getAllPlants, getPlantById, addPlant, deletePlant } = require("../utils/plant_utilities")
+const { getAllPlants, getPlantById, addPlant, deletePlant, updatePlant } = require("../utils/plant_utilities")
 
 // Execute query from getAllPlants
 const getPlants = function (req, res) {
@@ -52,9 +52,22 @@ const removePlant = function (req, res) {
 });
 };
 
+const changePlant = function (req, res) {
+  updatePlant(req).exec((err, data) => {
+      if (err) {
+          res.status(500);
+          return res.json({
+              error: err.message
+          });
+      }
+      res.send(data);
+  });
+};
+
 module.exports = {
   getPlants,
   getPlant,
   makePlant,
-  removePlant
+  removePlant,
+  changePlant
 }

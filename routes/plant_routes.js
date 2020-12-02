@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const { getPlants, getPlant, makePlant, removePlant } = require("../controllers/plants_controller")
+const { getPlants, getPlant, makePlant, removePlant, changePlant } = require("../controllers/plants_controller")
 
 // READ
 // GET on '/plants'
@@ -25,5 +25,6 @@ router.delete("/:id", removePlant)
 // UPDATE
 // PUT on 'plants/:id'
 // Updates a plant with id
+router.put("/:id", changePlant)
 
 module.exports = router
