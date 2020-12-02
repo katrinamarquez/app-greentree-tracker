@@ -4,13 +4,18 @@ const bodyParser = require("body-parser")
 const plantRouter = require("./routes/plant_routes.js")
 const mongoose = require("mongoose")
 
-const port = 3000
+const port = process.env.PORT || 3000;
 
-const app = express()
-app.use(cors())
-app.use(bodyParser.json())
+const app = express();
+app.use(cors());
+app.use(bodyParser.json());
 
-const dbConn = "mongodb://localhost/app-greentree-tracker"
+// when we need to deploy:
+if(process.env.NODE_ENV !== "production"){
+  require("dotenv").config();
+}
+
+const dbConn = process.env.MONGODB_URI || "mongodb://localhost/app-greentree-tracker"
 
 mongoose.connect(
   dbConn,
