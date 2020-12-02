@@ -9,7 +9,17 @@ const getPlantById = function (req) {
   return Plant.findById(req.params.id)
 }
 
+const addPlant = function(req){
+  return new Plant(req.body)
+}   
+
+const deletePlant = function (req) {
+  return Plant.findByIdAndRemove(id)
+}
+
 module.exports = {
   getAllPlants,
-  getPlantById
+  getPlantById,
+  addPlant, 
+  deletePlant
 }
