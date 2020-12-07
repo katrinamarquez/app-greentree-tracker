@@ -4,7 +4,7 @@
   "description": "Coder Academy T3A2 (Part B)",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "test": "mocha"
   },
   "author": "",
@@ -20,5 +20,8 @@
     "expect": "^26.6.2",
     "mocha": "^8.2.1",
     "nodemon": "^2.0.6"
+  }
+  "engines": {
+    "node": "12.x"
   }
 }
