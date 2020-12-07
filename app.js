@@ -6,6 +6,8 @@ const mongoose = require("mongoose")
 
 const port = process.env.PORT || 3000;
 
+//process.env.PORT
+
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
@@ -34,6 +36,9 @@ mongoose.connect(
 )
 
 app.use("/plants", plantRouter)
+
+console.log("port: ",process.env.PORT)
+console.log(process.env)
 
 app.listen(port, () => {
   console.log(`Greentree Tracker app listening on port ${port}`)
