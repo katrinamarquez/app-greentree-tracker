@@ -1,14 +1,23 @@
 const express = require("express")
+const expressSession = require('express-session')
 const cors = require("cors")
 const bodyParser = require("body-parser")
 const plantRouter = require("./routes/plant_routes.js")
+const authRouter = require("./routes/auth_routes");
 const mongoose = require("mongoose")
 
 const port = process.env.PORT || 3000;
 
 const app = express();
+
 app.use(cors());
 app.use(bodyParser.json());
+app.use(expressSession({
+  secret: 'treesarefriends',
+  resave: false, 
+  saveUninitialized: true,
+  cookie: { expires: 600000 }
+}))
 
 // when we need to deploy:
 if(process.env.NODE_ENV !== "production"){
