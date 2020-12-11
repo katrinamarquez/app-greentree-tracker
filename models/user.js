@@ -6,12 +6,12 @@ const User = new Schema ({
   email: {
     type: String,
     required: true
-},
-password: {
+  },
+  password: {
     type: String,
     required: true,
     bcrypt: true
-}
+  }
 })
 
 UserSchema.plugin(require('mongoose-bcrypt'));
