@@ -10,6 +10,10 @@ const Plant = new Schema ({
   common_name: {
     type: String
   },
+  modified_date: {
+    type: Date,
+    required: true
+  },
   description: {
     type: String
   }, 

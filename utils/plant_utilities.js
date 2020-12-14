@@ -10,6 +10,10 @@ const getPlantById = function (req) {
 }
 
 const addPlant = function(req){
+  let date = Date.now();
+  // Set date for this new post
+  req.body.modified_date = date;
+
   return new Plant(req.body)
 }   
 

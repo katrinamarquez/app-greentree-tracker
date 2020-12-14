@@ -13,6 +13,7 @@ const getPlants = function (req, res) {
   }); 
 };
 
+
 const getPosts = function (req, res) {
   // execute the query from getAllPosts
   getAllPosts(req).
@@ -43,6 +44,10 @@ const getPlant = function (req, res) {
 
 // Save Plant from addPlant
 const makePlant = function (req, res) {
+  // Add date
+	const date = new Date()
+  req.body.modified_date = date
+  
   addPlant(req).save((err, plant) => {
       if (err) {
           res.status(500);
