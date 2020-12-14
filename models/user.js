@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose')
 
 const User = new Schema({
-    business_name: {
+    username: {
         type: String, 
         required: true
     },
@@ -17,7 +17,7 @@ const User = new Schema({
     },
     role: {
         type: String,
-        enum: ['business','customer'],
+        enum: ['admin','customer'],
         //required: true
     }
 });
