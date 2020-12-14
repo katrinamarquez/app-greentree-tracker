@@ -3,7 +3,7 @@ const User = require('../models/user');
 
 const register = function (req, res) {
     User.register(new User({
-        username: req.body.username,
+        business_name: req.body.business_name,
         email: req.body.email,
         role: req.body.role || 'user'
     }), req.body.password, function (err) {
@@ -41,7 +41,7 @@ function loginUser(req, res) {
     // passport.authenticate returns a function that we will call with req, res, and a callback function to execute on success    
 
     authenticate(req, res, function () {
-        console.log('authenticated', req.user.username);
+        console.log('authenticated', req.user.business_name);
         console.log('session object:', req.session);
         console.log('req.user:', req.user);
         console.log('session ID:', req.sessionID);
