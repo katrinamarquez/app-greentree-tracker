@@ -5,7 +5,7 @@ const register = function (req, res) {
     User.register(new User({
         business_name: req.body.business_name,
         email: req.body.email,
-        role: req.body.role || 'user'
+        role: req.body.role
     }), req.body.password, function (err) {
         if (err) {
             if(err.name === 'UserExistsError') {
