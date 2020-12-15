@@ -10,6 +10,7 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const plantRouter = require("./routes/plant_routes.js")
 const authRouter = require("./routes/auth_routes.js")
 const usersRouter = require("./routes/users_routes.js")
+const adminRouter = require("./routes/admin_routes.js")
 
 const port = process.env.PORT || 3000;
 
@@ -72,6 +73,7 @@ require('./config/passport');
 app.use("/plants", plantRouter)
 app.use("/auth", authRouter)
 app.use("/users", usersRouter)
+app.use("/admin", adminRouter)
 
 console.log("port: ",process.env.PORT)
 // console.log(process.env)

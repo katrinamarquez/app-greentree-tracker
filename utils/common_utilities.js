@@ -11,8 +11,12 @@ const userAuthenticated = function (req, res, next) {
 }
 
 const isAdmin = function (req, res, next) {
-    if (req.user.role === 'admin') return next();
-    else res.sendStatus(403);
+    if (req.user.role === 'admin') {
+        return next();
+    } else {
+        res.status(403);
+        res.send("Not Allowed")
+    }
 }
 
 module.exports = {
