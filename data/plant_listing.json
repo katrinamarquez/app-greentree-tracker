@@ -4,7 +4,7 @@
         "common_name": "Eucalypt",
         "botanical_name": "Something in Latin Probably",
         "modified_date": "2019-09-20",
-        "category": "Tree",
+        "category": "tree",
         "description":
             "A big ass tree that Koalas love",
         "price": 200,
@@ -17,7 +17,7 @@
         "common_name": "Daisy",
         "botanical_name": "Something in Latin Probably",
         "modified_date": "2019-08-30",
-        "category": "Flower",
+        "category": "shrub",
         "description":
             "A pretty little flower",
         "price": 200,
@@ -30,7 +30,7 @@
         "common_name": "Venus Fly Trap",
         "botanical_name": "Something in Latin Probably",
         "modified_date": "2020-02-10",
-        "category": "Predator?",
+        "category": "grass",
         "description":
             "Eats flies, wtf!",
         "price": 200,
