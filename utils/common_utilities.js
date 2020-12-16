@@ -14,8 +14,7 @@ const isAdmin = function (req, res, next) {
     if (req.user.role === 'admin') {
         return next();
     } else {
-        res.status(403);
-        res.send("Not Allowed")
+        res.sendStatus(403);
     }
 }
 

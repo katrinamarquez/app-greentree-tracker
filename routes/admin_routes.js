@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { adminPage } = require('../controllers/admin_controller')
+// const { adminPage } = require('../controllers/admin_controller')
 const {
     isAdmin,
     userAuthenticated
@@ -8,8 +8,6 @@ const {
 
 router.use(userAuthenticated);
 
-router.get('/', isAdmin, (req, res) => {
-    res.sendStatus(200)
-});
+router.get('/', isAdmin);
 
 module.exports = router;
