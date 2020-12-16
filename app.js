@@ -12,7 +12,7 @@ const authRouter = require("./routes/auth_routes.js")
 const usersRouter = require("./routes/users_routes.js")
 const adminRouter = require("./routes/admin_routes.js")
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3005;
 
 const app = express();
 
@@ -74,6 +74,9 @@ app.use("/plants", plantRouter)
 app.use("/auth", authRouter)
 app.use("/users", usersRouter)
 app.use("/admin", adminRouter)
+
+var sign_s3 = require('./controllers/sign_s3');
+app.use('/sign_s3', sign_s3.sign_s3);
 
 console.log("port: ",process.env.PORT)
 // console.log(process.env)
