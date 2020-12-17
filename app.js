@@ -7,6 +7,7 @@ const MongoStore = require("connect-mongo")(session)
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
 
+
 const plantRouter = require("./routes/plant_routes.js")
 const authRouter = require("./routes/auth_routes.js")
 const usersRouter = require("./routes/users_routes.js")
@@ -74,6 +75,7 @@ app.use("/plants", plantRouter)
 app.use("/auth", authRouter)
 app.use("/users", usersRouter)
 app.use("/admin", adminRouter)
+
 
 console.log("port: ",process.env.PORT)
 // console.log(process.env)
