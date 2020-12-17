@@ -34,6 +34,7 @@ const changeUser = function (req, res) {
     }
 }
 
+
 // middleware function
 async function checkRequiresAdmin(req, res, next) {
     // If block value is passed in body, make sure it can be updated
