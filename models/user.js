@@ -11,6 +11,9 @@ const User = new Schema({
         type: String,
         enum: ['admin','customer'],
         //required: true
+    },
+    cart: {
+        type: Array
     }
 });
 
