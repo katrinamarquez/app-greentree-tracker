@@ -12,6 +12,7 @@ const authRouter = require("./routes/auth_routes.js")
 const usersRouter = require("./routes/users_routes.js")
 const adminRouter = require("./routes/admin_routes.js")
 const quoteRouter = require("./routes/quote_routes.js")
+const cartRouter = require("./routes/cart_routes.js")
 
 const port = process.env.PORT || 3005;
 
@@ -75,6 +76,7 @@ app.use("/plants", plantRouter)
 app.use("/auth", authRouter)
 app.use("/users", usersRouter)
 app.use("/admin", adminRouter)
+app.use("/cart", cartRouter)
 app.use("/quotes", quoteRouter)
 
 console.log("port: ",process.env.PORT)

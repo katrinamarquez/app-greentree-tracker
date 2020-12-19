@@ -8,7 +8,12 @@ const updateUser = function (req) {
     return User.findByIdAndUpdate(req.params.id, req.body);
 }
 
+const findUser = function (req, currentUserId) {
+    return User.find({ _id: currentUserId})
+}
+
 module.exports = {
     deleteUser,
-    updateUser
+    updateUser,
+    findUser
 };

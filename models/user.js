@@ -12,9 +12,17 @@ const User = new Schema({
         enum: ['admin','customer'],
         //required: true
     },
-    cart: {
-        type: Array
-    }
+    cart: [{
+        plant: {
+          type: Schema.Types.ObjectId,
+          ref: 'Plants'
+        },
+        quantity: Number,
+        addedAt: {
+          type: Date,
+          default: Date.now
+        }
+      }]
 });
 
 // plugin the passport-local-mongoose middleware with our User schema
