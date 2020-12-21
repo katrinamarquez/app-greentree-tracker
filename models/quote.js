@@ -7,9 +7,10 @@ const Quote = new Schema({
         id: String,
         quantity: Number,
     }],
-    owner: {
+    user_id: {
         type: Schema.Types.ObjectId,
-        required: true
+        required: true,
+        ref: 'Users'
     },
     comment: {
         type: String

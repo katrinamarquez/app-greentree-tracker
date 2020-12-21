@@ -4,25 +4,20 @@ const { getCart, getCartItem, addToCart, removeCartItem, changeCartItem } = requ
 const { isAdmin, userAuthenticated } = require("../utils/common_utilities")
 
 // READ
-// GET on '/plants'
-// Returns all plants
+// GET on '/cart'
+// Returns all cart items
 router.get("/", userAuthenticated, getCart)
 
 // READ
-// GET on '/plants/:id'
-// Returns plant with given id
+// GET on '/cart/:id'
 router.get("/:id", getCartItem)
 
 router.post("/:id/add-to-cart", userAuthenticated, addToCart)
 
 // DELETE
-// DELETE on '/plants/:id'
-// Deletes a plant with id
-router.delete("/:id", removeCartItem)
+router.delete("/:id", userAuthenticated, removeCartItem)
 
 // UPDATE
-// PUT on 'plants/:id'
-// Updates a plant with id
-router.put("/:id", changeCartItem)
+router.put("/:id", userAuthenticated, changeCartItem)
 
 module.exports = router

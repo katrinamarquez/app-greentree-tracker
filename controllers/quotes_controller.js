@@ -32,6 +32,8 @@ const makeQuote = function (req, res) {
     req.body.modified_date = date
 
     req.body.user_id = req.user._id
+
+    console.log(req.body)
   
     addQuote(req).save((err, quote) => {
         if (err) {

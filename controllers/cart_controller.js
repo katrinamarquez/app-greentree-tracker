@@ -4,12 +4,8 @@ const User = require('../models/user');
 
 const getCart = function (req, res) {
     console.log("getCart user: ", req.user)
-    console.log("getCart body: ",req.body)
 
-    User.find(
-        {_id: req.user._id}
-    ).exec((err, userInfo) => {
-        console.log("userInfo: ", userInfo)
+    User.findById(req.user._id).exec((err, userInfo) => {
         if (err) {
             res.status(500);
             return res.json({
@@ -40,7 +36,7 @@ const addToCart = function (req, res) {
         {
             $push :{
                 cart: {
-                    plant: req.params.id, 
+                    plant_id: req.params.id, 
                     quantity: req.body.quantity,
                     addedAt: req.body.modified_date
                 }
@@ -60,11 +56,50 @@ const addToCart = function (req, res) {
 }
 
 const removeCartItem = function (req, res) {
+    console.log("remove cart item params: ", req.params)
+    const plantId = req.params.id
 
+    User.findOneAndUpdate(
+        {_id: req.user.id}, 
+        {
+            $pull :{
+                cart: { plant_id: req.params.id }
+            }
+        }, {new: true})
+        .exec((err, userInfo) => {
+            if (err) {
+                res.status(500);
+                return res.json({
+                    error: err.message
+                })
+            } else {
+                res.sendStatus(204)
+            }
+        })
 }
 
 const changeCartItem = function (req, res) {
 
+    console.log("In changecart, new quantity: ", req.body.quantity)
+    console.log("In changecart, params: ", req.params.id)
+    
+    User.findOneAndUpdate(
+        {_id: req.user.id, "cart._id" : req.params.id },
+        { $set : {
+            "cart.$.quantity": req.body.quantity
+            }
+        }, {new: true})
+        .exec((err, userInfo) => {
+            if (err) {
+                res.status(500);
+                return res.json({
+                    error: err.message
+                })
+            } else {
+                res.status(201)
+                res.send(userInfo.cart)
+            }
+        })
 }
 
 module.exports = {
