@@ -3,7 +3,8 @@ const router = express.Router();
 const {
     removeUser,
     changeUser,
-    checkRequiresAdmin
+    checkRequiresAdmin,
+    getUserInfo
 } = require('../controllers/users_controller');
 const {
     isAdmin,
@@ -11,6 +12,8 @@ const {
 } = require('../utils/common_utilities');
 
 router.use(userAuthenticated);
+
+router.get('/:id', isAdmin, getUserInfo)
 
 router.put('/:id', checkRequiresAdmin, changeUser);
 

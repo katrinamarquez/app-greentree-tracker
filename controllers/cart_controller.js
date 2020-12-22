@@ -102,10 +102,35 @@ const changeCartItem = function (req, res) {
         })
 }
 
+const clearCart = function (req, res) {
+    // define current user
+    let currentUserId = req.user._id
+
+    // $pull (remove) the contents of the users cart once they submit their quote request form
+    User.findOneAndUpdate(
+        {_id: currentUserId}, 
+        {
+            $pull : {
+                cart : {}
+            }
+        }, {new: true})
+        .exec((err, userInfo) => {
+            if (err) {
+                res.status(500);
+                return res.json({
+                    error: err.message
+                })
+            } else {
+                res.sendStatus(201)
+            }
+        })
+}
+
 module.exports = {
     getCart,
     getCartItem,
     addToCart,
     removeCartItem,
-    changeCartItem
+    changeCartItem,
+    clearCart
 }

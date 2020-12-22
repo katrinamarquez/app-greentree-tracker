@@ -1,16 +1,25 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const passportLocalMongoose = require('passport-local-mongoose')
+// const passportLocalMongoose = require('passport-local-mongoose')
 
 const Quote = new Schema({
     plants: [{
-        id: String,
-        quantity: Number,
+        plant_id: {
+            type: Schema.Types.ObjectId,
+            required: true,
+            // ref: 'Plants'
+            ref: 'Plant'
+        },
+        quantity: {
+            type: Number,
+            required: true
+        }
     }],
     user_id: {
         type: Schema.Types.ObjectId,
         required: true,
-        ref: 'Users'
+        // ref: 'Users'
+        ref: 'User'
     },
     comment: {
         type: String
@@ -26,6 +35,6 @@ const Quote = new Schema({
 });
 
 // plugin the passport-local-mongoose middleware with our Quote schema
-Quote.plugin(passportLocalMongoose);
+// Quote.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('Quote', Quote);

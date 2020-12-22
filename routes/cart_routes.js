@@ -1,12 +1,14 @@
 const express = require("express")
 const router = express.Router()
-const { getCart, getCartItem, addToCart, removeCartItem, changeCartItem } = require("../controllers/cart_controller")
+const { getCart, getCartItem, addToCart, removeCartItem, changeCartItem, clearCart } = require("../controllers/cart_controller")
 const { isAdmin, userAuthenticated } = require("../utils/common_utilities")
 
 // READ
 // GET on '/cart'
 // Returns all cart items
 router.get("/", userAuthenticated, getCart)
+
+router.delete("/", userAuthenticated, clearCart)
 
 // READ
 // GET on '/cart/:id'

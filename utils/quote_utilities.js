@@ -10,10 +10,6 @@ const getQuoteById = function (req) {
 }
 
 const addQuote = function(req){
-  let date = Date.now();
-  // Set date for this new post
-  req.body.modified_date = date;
-
   return new Quote(req.body)
 }   
 

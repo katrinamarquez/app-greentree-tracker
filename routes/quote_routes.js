@@ -1,7 +1,6 @@
 const express = require("express")
 const router = express.Router()
-// change to quote controllers
-const { getQuotes, getQuote, makeQuote, removeQuote, changeQuote } = require("../controllers/quotes_controller")
+const { getQuotes, getQuote, makeQuote, removeQuote, changeQuoteStatus } = require("../controllers/quotes_controller")
 // change to authenticate user?
 const { isAdmin, userAuthenticated } = require("../utils/common_utilities")
 
@@ -28,6 +27,6 @@ router.delete("/:id", removeQuote)
 // UPDATE
 // PUT on 'quotes/:id'
 // Updates a plant with id
-router.put("/:id", changeQuote)
+router.put("/:id", changeQuoteStatus)
 
 module.exports = router

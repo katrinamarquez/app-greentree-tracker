@@ -1,4 +1,3 @@
-// change to quote utils
 const { getAllQuotes, getQuoteById, addQuote, deleteQuote, updateQuote } = require("../utils/quote_utilities")
 
 // Execute query from getAllquotes
@@ -61,7 +60,11 @@ const removeQuote = function (req, res) {
 });
 };
 
-const changeQuote = function (req, res) {
+const changeQuoteStatus = function (req, res) {
+
+  console.log("In quotestatus: ", req.body)
+  console.log("In quotestatus id: ", req.params.id)
+
   updateQuote(req).exec((err, data) => {
       if (err) {
           res.status(500);
@@ -73,10 +76,11 @@ const changeQuote = function (req, res) {
   });
 };
 
+
 module.exports = {
   getQuotes,
   getQuote,
   makeQuote,
   removeQuote,
-  changeQuote
+  changeQuoteStatus
 }

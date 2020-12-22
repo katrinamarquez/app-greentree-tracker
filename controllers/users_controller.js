@@ -1,8 +1,22 @@
 const User = require('../models/user');
 const {
     deleteUser,
-    updateUser
+    updateUser,
+    findUser
 } = require('../utils/user_utilities');
+
+const getUserInfo = function (req, res) {
+    findUser(req).exec((err, userInfo) => {
+        if (err) {
+            res.status(500);
+            return res.json({
+                error: err
+            });
+        } else {
+            res.send(userInfo)
+        }
+    });
+}
 
 const removeUser = function (req, res) {
     deleteUser(req).exec((err) => {
@@ -67,5 +81,6 @@ async function checkRequiresAdmin(req, res, next) {
 module.exports = {
     removeUser,
     changeUser,
-    checkRequiresAdmin
+    checkRequiresAdmin,
+    getUserInfo
 };
