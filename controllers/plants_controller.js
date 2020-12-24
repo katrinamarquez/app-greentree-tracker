@@ -47,6 +47,7 @@ const makePlant = function (req, res) {
   // Add date
 	const date = new Date()
   req.body.modified_date = date
+  console.log(req.body)
   
   addPlant(req).save((err, plant) => {
       if (err) {

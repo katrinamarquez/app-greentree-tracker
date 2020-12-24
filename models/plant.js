@@ -33,6 +33,9 @@ const Plant = new Schema ({
     type: String,
     enum: ['shrub', 'tree','ground cover','grass'],
     required: true
+  },
+  plant_image: {
+    type: String
   }
 })
 
