@@ -13,9 +13,9 @@ const {
 
 router.use(userAuthenticated);
 
-router.get('/:id', isAdmin, getUserInfo)
+router.get('/:id', userAuthenticated, getUserInfo)
 
-router.put('/:id', checkRequiresAdmin, changeUser);
+router.put('/:id', userAuthenticated, changeUser);
 
 router.delete('/:id', isAdmin, removeUser);
 

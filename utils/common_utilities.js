@@ -11,7 +11,7 @@ const userAuthenticated = function (req, res, next) {
 }
 
 const isAdmin = function (req, res, next) {
-    if (req.user.role === 'admin') {
+    if (req.user && req.user.role === 'admin') {
         return next();
     } else {
         res.sendStatus(403);

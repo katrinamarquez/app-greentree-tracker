@@ -13,6 +13,8 @@ router.get("/", getPlants)
 // Returns plant with given id
 router.get("/:id", getPlant)
 
+router.use(userAuthenticated)
+
 // CREATE
 // POST on '/plants'
 // Creates a new plant

@@ -31,6 +31,8 @@ const removeUser = function (req, res) {
 }
 
 const changeUser = function (req, res) {
+    console.log("In changeUser req: ", req.body)
+    
     if (req.error) {
         res.status(req.error.status);
         res.send(req.error.message);
