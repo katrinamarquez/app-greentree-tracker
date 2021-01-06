@@ -1,12 +1,17 @@
 const express = require("express")
 const router = express.Router()
-const { getPlants, getPlant, makePlant, removePlant, changePlant } = require("../controllers/plants_controller")
+const { getPlants, getFilteredPlants, getPlant, makePlant, removePlant, changePlant } = require("../controllers/plants_controller")
 const { isAdmin, userAuthenticated } = require("../utils/common_utilities")
 
 // READ
 // GET on '/plants'
 // Returns all plants
 router.get("/", getPlants)
+
+// READ
+// GET on '/plants'
+// Returns all plants
+router.get("/filtered", getFilteredPlants)
 
 // READ
 // GET on '/plants/:id'

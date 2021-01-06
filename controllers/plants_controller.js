@@ -1,8 +1,24 @@
-const { getAllPlants, getPlantById, addPlant, deletePlant, updatePlant } = require("../utils/plant_utilities")
+const { getAllPlants, getAllFilteredPlants, getPlantById, addPlant, deletePlant, updatePlant } = require("../utils/plant_utilities")
 
 // Execute query from getAllPlants
 const getPlants = function (req, res) {
   getAllPlants(req).exec((err, plants) => {
+    if (err) {
+      res.status(500);
+      return res.json({
+        error: err.message
+      });
+    }
+    res.send(plants)
+  }); 
+};
+
+// Execute query from getAllPlants
+const getFilteredPlants = function (req, res) {
+  
+  console.log("In filtered plants body: ", req.query)
+  
+  getAllFilteredPlants(req).exec((err, plants) => {
     if (err) {
       res.status(500);
       return res.json({
@@ -89,6 +105,7 @@ const changePlant = function (req, res) {
 
 module.exports = {
   getPlants,
+  getFilteredPlants,
   getPlant,
   makePlant,
   removePlant,

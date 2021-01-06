@@ -5,6 +5,11 @@ const getAllPlants = function (req) {
   return Plant.find()
 }
 
+// Return list of all filtered plants 
+const getAllFilteredPlants = function (req) {
+  return Plant.find(req.query)
+}
+
 const getPlantById = function (req) {
   return Plant.findById(req.params.id)
 }
@@ -29,6 +34,7 @@ const updatePlant = function (req) {
 
 module.exports = {
   getAllPlants,
+  getAllFilteredPlants,
   getPlantById,
   addPlant, 
   deletePlant,
