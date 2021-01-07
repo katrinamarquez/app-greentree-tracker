@@ -65,7 +65,10 @@ app.use(session({
   },
   store: new MongoStore({
       mongooseConnection: mongoose.connection
-  })
+  }),
+  cookie: (process.env.NODE_ENV === 'production') ?
+    { sameSite: 'none', secure: true} :
+    { sameSite: false}
 }));
 
 app.use(passport.initialize());
