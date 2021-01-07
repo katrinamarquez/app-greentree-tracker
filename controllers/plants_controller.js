@@ -92,6 +92,8 @@ const removePlant = function (req, res) {
 };
 
 const changePlant = function (req, res) {
+  console.log('*** changPlant req.user is', req.user);
+  console.log('req.body: ', req.body);
   updatePlant(req).exec((err, data) => {
       if (err) {
           res.status(500);
