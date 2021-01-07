@@ -3,8 +3,6 @@ const router = express.Router()
 const { getPlants, getFilteredPlants, getPlant, makePlant, removePlant, changePlant } = require("../controllers/plants_controller")
 const { isAdmin, userAuthenticated, checkPrice } = require("../utils/common_utilities")
 
-const passport = require('passport')
-
 // READ
 // GET on '/plants'
 // Returns all plants
@@ -20,7 +18,6 @@ router.get("/filtered", checkPrice, getFilteredPlants)
 // Returns plant with given id
 router.get("/:id", getPlant)
 
-router.use(passport.authenticate('local'))
 router.use(userAuthenticated)
 
 // CREATE
