@@ -18,7 +18,15 @@ const isAdmin = function (req, res, next) {
     }
 }
 
+const checkPrice = function (req, res, next) {
+    if (req.query.price) {
+        req.query.price = parseInt(req.query.price)
+    }
+    next()
+}
+
 module.exports = {
     isAdmin,
-    userAuthenticated
+    userAuthenticated,
+    checkPrice
 };
