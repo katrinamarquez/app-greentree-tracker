@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require("connect-mongo")(session)
 const passport = require('passport');
+const initPassport = require("./config/passport");
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const plantRouter = require("./routes/plant_routes.js")
@@ -55,52 +56,46 @@ app.use(cors({
     }
 }));
 
-// const sessionConfig = {
+// app.use(session({
+//   // resave and saveUninitialized set to false for deprecation warnings
 //   secret: "Tyler and Katrina are awesome",
 //   resave: false,
-//   saveUninitialized: true,
-//   store: new MongoStore({ 
-//     mongooseConnection: mongoose.connection 
+//   saveUninitialized: false,
+//   store: new MongoStore({
+//       mongooseConnection: mongoose.connection
 //   }),
-//   proxy: true,
-//   cookie: {
-//     httpOnly: false,
-//     expires: 3_600_000
-//   },
-// };
+//   cookie: (process.env.NODE_ENV === 'production') ?
+//     { sameSite: 'none', secure: true, maxAge: 1800000 } :
+//     { sameSite: false, maxAge: 1800000 }
+// }));
 
-// if (process.env.NODE_ENV === 'production') {
-//   sessionConfig.cookie.sameSite = 'none'; // allow cross-site usage of cookies
-//   sessionConfig.cookie.secure = true; // secures cookies
-// }
-// app.enable('trust proxy'); // stamps cookies to be secured
-// app.use(
-//   session(sessionConfig)
-// );
-
-app.enable('trust proxy')
-app.use(session({
-  // resave and saveUninitialized set to false for deprecation warnings
+initPassport(passport)
+const sessionConfig = {
   secret: "Tyler and Katrina are awesome",
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore({ 
+    mongooseConnection: mongoose.connection 
+  }),
   proxy: true,
-  // resave: false,
-  // saveUninitialized: false,
-  // cookie: (process.env.NODE_ENV === 'production') ?
-  //   { sameSite: 'none', secure: true, maxAge: 1800000 } :
-  //   { sameSite: false, maxAge: 1800000 },
   cookie: {
-    secure: true,
-    sameSite: 'none',
-    httpOnly: false
+    httpOnly: false,
+    expires: 3_600_000
   },
-  store: new MongoStore({
-      mongooseConnection: mongoose.connection
-  })
-}));
+};
+
+if (process.env.NODE_ENV === 'production') {
+  sessionConfig.cookie.sameSite = 'none'; // allow cross-site usage of cookies
+  sessionConfig.cookie.secure = true; // secures cookies
+}
+app.enable('trust proxy'); // stamps cookies to be secured
+app.use(
+  session(sessionConfig)
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
-require('./config/passport');
+// require('./config/passport');
 
 app.use("/plants", plantRouter)
 app.use("/auth", authRouter)
