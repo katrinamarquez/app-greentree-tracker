@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require("connect-mongo")(session)
 const passport = require('passport');
-const initPassport = require("./config/passport");
+// const initPassport = require("./config/passport");
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const plantRouter = require("./routes/plant_routes.js")
@@ -69,7 +69,7 @@ app.use(cors({
 //     { sameSite: false, maxAge: 1800000 }
 // }));
 
-initPassport(passport)
+// initPassport(passport)
 const sessionConfig = {
   secret: "Tyler and Katrina are awesome",
   resave: false,
@@ -95,7 +95,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-// require('./config/passport');
+require('./config/passport');
 
 app.use("/plants", plantRouter)
 app.use("/auth", authRouter)
