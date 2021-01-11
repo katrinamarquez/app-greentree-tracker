@@ -55,21 +55,42 @@ app.use(cors({
     }
 }));
 
-app.use(session({
-  // resave and saveUninitialized set to false for deprecation warnings
+const sessionConfig = {
   secret: "Tyler and Katrina are awesome",
   resave: false,
-  saveUninitialized: false,
-  cookie: {
-      maxAge: 1800000
-  },
-  store: new MongoStore({
-      mongooseConnection: mongoose.connection
+  saveUninitialized: true,
+  store: new MongoStore({ 
+    mongooseConnection: mongoose.connection 
   }),
-  cookie: (process.env.NODE_ENV === 'production') ?
-    { sameSite: 'none', secure: true} :
-    { sameSite: false}
-}));
+  proxy: true,
+  cookie: {
+    httpOnly: false,
+    expires: 3_600_000
+  },
+};
+
+if (process.env.NODE_ENV === 'production') {
+  sessionConfig.cookie.sameSite = 'none'; // allow cross-site usage of cookies
+  sessionConfig.cookie.secure = true; // secures cookies
+}
+app.enable('trust proxy'); // stamps cookies to be secured
+app.use(
+  session(sessionConfig)
+);
+
+// app.enable('trust proxy')
+// app.use(session({
+//   // resave and saveUninitialized set to false for deprecation warnings
+//   secret: "Tyler and Katrina are awesome",
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: (process.env.NODE_ENV === 'production') ?
+//     { sameSite: 'none', secure: true, maxAge: 1800000 } :
+//     { sameSite: false, maxAge: 1800000 },
+//   store: new MongoStore({
+//       mongooseConnection: mongoose.connection
+//   })
+// }));
 
 app.use(passport.initialize());
 app.use(passport.session());
