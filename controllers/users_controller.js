@@ -2,8 +2,21 @@ const User = require('../models/user');
 const {
     deleteUser,
     updateUser,
-    findUser
+    findUser,
+    getAllUsers
 } = require('../utils/user_utilities');
+
+const getUsers = function (req, res) {
+    getAllUsers(req).exec((err, users) => {
+        if (err) {
+          res.status(500);
+          return res.json({
+            error: err.message
+          });
+        }
+        res.send(users)
+    }); 
+}
 
 const getUserInfo = function (req, res) {
     findUser(req).exec((err, userInfo) => {
@@ -84,5 +97,6 @@ module.exports = {
     removeUser,
     changeUser,
     checkRequiresAdmin,
-    getUserInfo
+    getUserInfo,
+    getUsers
 };

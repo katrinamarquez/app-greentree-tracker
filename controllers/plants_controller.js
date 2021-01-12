@@ -29,24 +29,6 @@ const getFilteredPlants = function (req, res) {
   }); 
 };
 
-
-const getPosts = function (req, res) {
-  // execute the query from getAllPosts
-  getAllPosts(req).
-  sort({
-      modified_date: -1
-  }).
-  exec((err, posts) => {
-      if (err) {
-          res.status(500);
-          return res.json({
-              error: err.message
-          });
-      }
-      res.send(posts);
-  });
-};
-
 // Execute query from getPlantById
 const getPlant = function (req, res) {
   getPlantById(req).exec((err, plant) => {

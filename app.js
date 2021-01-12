@@ -56,19 +56,6 @@ app.use(cors({
     }
 }));
 
-// app.use(session({
-//   // resave and saveUninitialized set to false for deprecation warnings
-//   secret: "Tyler and Katrina are awesome",
-//   resave: false,
-//   saveUninitialized: false,
-//   store: new MongoStore({
-//       mongooseConnection: mongoose.connection
-//   }),
-//   cookie: (process.env.NODE_ENV === 'production') ?
-//     { sameSite: 'none', secure: true, maxAge: 1800000 } :
-//     { sameSite: false, maxAge: 1800000 }
-// }));
-
 // initPassport(passport)
 const sessionConfig = {
   secret: "Tyler and Katrina are awesome",

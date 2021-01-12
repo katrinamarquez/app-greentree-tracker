@@ -1,5 +1,9 @@
 const User = require('../models/user');
 
+const getAllUsers = function (req) {
+    return User.find()
+}
+
 const deleteUser = function (req) {
     return User.findByIdAndRemove(req.params.id);
 }
@@ -15,5 +19,6 @@ const findUser = function (req) {
 module.exports = {
     deleteUser,
     updateUser,
-    findUser
+    findUser,
+    getAllUsers
 };
