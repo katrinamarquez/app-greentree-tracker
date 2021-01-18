@@ -4,7 +4,7 @@
   "description": "Coder Academy T3A2 (Part B)",
   "main": "app.js",
   "scripts": {
-    "test": "mocha",
+    "test": "jest",
     "start": "node app.js",
     "start:dev": "nodemon app.js"
   },
@@ -29,7 +29,15 @@
   "devDependencies": {
     "expect": "^26.6.2",
     "mocha": "^8.2.1",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "supertest": "^6.1.1",
+    "jest": "^26.6.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   },
   "engines": {
     "node": "12.x"
