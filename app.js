@@ -95,7 +95,7 @@ console.log("port: ",process.env.PORT)
 // console.log(process.env)
 
 app.listen(port, () => {
-  console.log(`Greentree Tracker app listening on port ${port}`)
+  // console.log(`Greentree Tracker app listening on port ${port}`)
 })
 
-module.exports = app;
+module.exports = {app};
